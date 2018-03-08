@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset = "utf-8">
+		<meta name = "description" content = "">
+		<!--上述為網址外部描述-->
+		<title>Login</title>
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="left-reload.css" rel="stylesheet">
+		
+		<link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet"  type="text/css">
+		<link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet"  type="text/css">
+		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"  type="text/css">
+		<link href="bootstrap/css/bootstrap.css" rel="stylesheet"  type="text/css">
+		<link href="Gallery-2.25.1/css/blueimp-gallery.css" rel="stylesheet"  type="text/css">
+		
+		<script src="jquery-3.2.1.js"></script>
+		<script src="bootstrap/js/bootstrap.js"></script>
+		<script src="bootstrap/js/bootstrap.min.js"></script>
+		<script src="main-coser.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		
+		<script src="Gallery-2.25.1/js/blueimp-gallery-video.js"></script>
+
+		<!--響應式套用 p.s 這裡有一個小問題，根據你的行位 若將18行的引進js移到16行，將無法造成輪播效果，請各位注意-->
+	</head>
+	<body id=body>
+	
+
+      <div class = "loginbox">
+    	<div class="logintoregister">
+    		<h3>尚未註冊&nbsp?</h3>
+    		<input type="button" value="按此註冊" onclick="javascript:location.href='PramDream_MemberRegister.html'"></input>
+    	</div>    	    
+	   		<div class = "form-horizontal">
+	   			<form class = "LoginForm" action = "">
+					<div class = "form-group">
+					  		<label class = "control-label col-sm-2" for = "account"><div class=acttext>帳號&nbsp:&nbsp&nbsp</div></label>
+					  	<div class = "col-sm-1">          
+							<input type = "text" class = "form-control" id = "account" placeholder = "輸入帳號或信箱" name = "account">
+					  	</div>
+					</div>
+
+					<div class = "form-group pwd">
+					  		<label class = "control-label col-sm-2" for = "pwd"><div class=pwdtext>密碼&nbsp:&nbsp&nbsp</div></label>
+					 	<div class = "col-sm-1">          
+							<input type = "password" class = "form-control" id = "pwd" placeholder = "輸入密碼" name = "pwd">
+						</div>
+					</div>
+					<div class = "form-group loginsubmit">        
+					  	<div class = "col-sm-1">
+							<button type = "submit" class = "btn btn-default">送出</button>
+						    <div class = forgetpwd>忘記密碼&nbsp?</div>
+					  	</div>
+				    </div>						   		 	
+	   		  	</form>
+	   		</div>
+	   	</div>
+	<!--登入介面區-->
+
+		<div class = "otheraccountlogin col-sm-6">
+	   		<div class = facebooklogin>
+	   	</div>
+	   		<div class = googlelogin>       
+	   	</div>
+		</div>		   
+		<!--登入介面區-->
+	</body>
+
+	</html>

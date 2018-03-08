@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset = "UTF-8">
+		<meta name = "viewport" content="width=device-width, initial-scale=1">
+		<link rel = "stylesheet" href= "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<style type = "text/css">
+			header{
+				padding: 1em;
+				color: black;
+				background-color: white;
+				clear: left;
+				text-align: center;
+			}
+			
+			article{
+				padding: 1em;
+				overflow: hidden;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<h2>Coser註冊</h2>
+		</header>
+		<article>
+			<div class = "container">
+				  <form class = "form-horizontal" action = "">
+					<div class = "form-group">
+					  <label class = "control-label col-sm-2" for = "name">姓名:</label>
+					  <div class = "col-sm-10">
+						<input type = "txt" class = "form-control" id = "name" placeholder = "輸入姓名" name = "name">
+					  </div>
+					</div>
+					<div class = "form-group">
+					  <label class = "control-label col-sm-2" for = "gender">性別:</label>
+					  <div class = "col-sm-10">          
+						<input type = "txt" class = "form-control" id = "gender" placeholder = "輸入性別" name = "gender">
+					  </div>
+					</div>
+					<div class = "form-group">
+					  <label class = "control-label col-sm-2" for = "email">Email:</label>
+					  <div class = "col-sm-10">
+						<input type = "email" class="form-control" id = "email" placeholder = "輸入信箱" name = "email">
+					  </div>
+					</div>
+					<div class = "form-group">
+					  <label class = "control-label col-sm-2" for = "phone">手機號碼:</label>
+					  <div class = "col-sm-10">
+						<input type = "phone" class="form-control" id = "phone" placeholder = "輸入手機號碼" name = "phone">
+					  </div>
+					</div>
+					<div class = "form-group">
+					  <label class = "control-label col-sm-2" for = "address">住址:</label>
+					  <div class = "col-sm-10">
+						<input type = "txt" class="form-control" id = "address" placeholder = "輸入住址" name = "address">
+					  </div>
+					</div>
+					<div class = "form-group">
+					  <label class = "control-label col-sm-2" for = "pwd">密碼:</label>
+					  <div class = "col-sm-10">          
+						<input type = "password" class = "form-control" id = "pwd" placeholder = "輸入密碼" name = "pwd">
+					  </div>
+					</div>
+					<div class = "form-group">
+					  <label class = "control-label col-sm-2" for = "pwdagain">確認密碼:</label>
+					  <div class = "col-sm-10">          
+						<input type = "password" class = "form-control" id = "pwdagain" placeholder = "再次輸入密碼" name = "pwdagain">
+					  </div>
+					</div>
+					<div class = "form-group">
+					  <label class = "control-label col-sm-2" for = "file">個人cosplay照:</label>
+					  <div class = "col-sm-10">          
+						<input type = "file" id = "file">
+					  </div>
+					</div>
+					<div class = "form-group">
+					  <label class = "control-label col-sm-2" for = "fileagain">個人cosplay照所cosplay之角色圖:</label>
+					  <div class = "col-sm-10">          
+						<input type = "file" id = "fileagain">
+					  </div>
+					</div>
+					<div class = "form-group">
+					  <label class = "control-label col-sm-2" for = "confirmnum">驗證碼:</label>
+					  <div class = "col-sm-10">
+						<input type = "txt" class = "form-control" id = "confirmnum" placeholder = "輸入圖片中之驗證碼" name = "confirmnum">
+					  </div>
+					</div>
+					<div class = "form-group">        
+					  <div class = "col-sm-offset-2 col-sm-10">
+						<button type = "submit" class = "btn btn-default">送出</button>
+					  </div>
+					</div>
+				  </form>
+				</div>
+		</article>
+	</body>
+</html>

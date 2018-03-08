@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset = "utf-8">
+		<meta name = "description" content = "">
+		<!--上述為網址外部描述-->
+		<title>個人頁面</title>
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="left-reload.css" rel="stylesheet">
+		
+		<link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet"  type="text/css">
+		<link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet"  type="text/css">
+		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"  type="text/css">
+		<link href="bootstrap/css/bootstrap.css" rel="stylesheet"  type="text/css">
+		
+		<script src="jquery-3.2.1.js"></script>
+		<script src="bootstrap/js/bootstrap.js"></script>
+		<script src="bootstrap/js/bootstrap.min.js"></script>
+		<script src="main-coser.js"></script>
+		<!--響應式套用 p.s 這裡有一個小問題，根據你的行位 若將18行的引進js移到16行，將無法造成輪播效果，請各位注意-->
+	</head>
+	<body id=body onmousemove="mv()" onmouseup="mup()">
+		<div id=headcircle class=circle_in_black ondblclick= "hdcircleonclick()" onmousedown="md()"><div id=headdiv></div></div>
+	<!--功能欄-->
+   
+
+  <div id=logoarea1>
+  </div>
+
+  <div id=logoarea2>
+  </div>
+
+   
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators span12">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner" role="listbox"  >
+    <div class="item active">
+      <img id=headimg  src="http://i.imgur.com/gBzNVdw.jpg" alt="news 1">
+    </div>
+    <div class="item">
+      <img id=headimg  src="http://i.imgur.com/apnFw1T.jpg" alt="news 2">
+    </div>
+    <div class="item">
+      <img id=headimg  src="http://i.imgur.com/VYwxxe7.jpg" alt="news 3">
+    </div>
+  </div>
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="icon-prev" aria-hidden="true"></span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="icon-next" aria-hidden="true"></span>
+  </a>
+</div>
+<!--封面輪播系統-->
+
+<!-- 個人圖像 NAV -->
+
+		<div class = "container-fluid">
+			<div class="row-fluid">
+				<!-- 個人照片及個人資料 -->
+				<div class="span2">
+					<div class="imgArea"><img src="https://scontent.xx.fbcdn.net/v/t1.0-9/14141806_1177853265571230_2597804285508351377_n.jpg?oh=361dde1eec6a3e9ac3cdab06fd046f78&oe=59A04190"></div>
+					<div class="personal-Info">	
+						<p2>姓名：<span class="userName">野圓心支柱<br></span></p2>
+						<p2>年齡：<span class="userAge">五歲<br></span></p2>
+						<p2>性別：<span class="userGen">女<br></span></p2>
+						<p2>bbbb<br></p2>
+						<p2>aaaa<br></p2>
+						<p2>aaaa<br></p2>
+					</div>
+				</div>
+				
+				<!--container-fluid.row-fluid.span2 結束 個人照片及個人資料-->
+			
+				<div class="span8">
+				<!-- 個人頁面按鈕 -->
+					<div class="navbar">
+							<li class="btn btn-default navv">回首頁</li>
+							<li class="btn btn-default navv">加關注</li>
+					</div>
+				<!--container-fluid.row-fluid.span2 結束 個人頁面按鈕-->
+				<div class="row-fluid">
+					<div class="span6">
+						<h2>我是野圓心支柱，今年五歲，討厭吃青椒，喜歡看帥哥<h2>
+					</div>
+					<div class="span6">
+					<div class="personal-idx-img">
+						<table border="0">
+					　		<tr>
+							　	<td><img src="https://scontent.xx.fbcdn.net/v/t1.0-9/14141806_1177853265571230_2597804285508351377_n.jpg?oh=361dde1eec6a3e9ac3cdab06fd046f78&oe=59A04190"></td>
+　								<td><img src="https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/17426005_414923278842449_7752448810598519452_n.jpg?oh=193c63097b73c09fdfe2225198897ee0&oe=59A278FE"></td>
+							</tr>
+							<tr>
+								<td><img src="https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/17426005_414923278842449_7752448810598519452_n.jpg?oh=193c63097b73c09fdfe2225198897ee0&oe=59A278FE"></td>
+								<td><img src="https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/17155573_1685817524766977_8595505419128015136_n.jpg?oh=6f7871e53b020f4facbd1f2f9750df92&oe=59A0F71A"></td>
+							</tr>
+						</table>
+					</div>
+					</div>
+				</div>
+				</div>
+				<!--container-fluid.row-fluid.span8 結束 中間熱門作品欄-->
+				
+				<div class="span2">
+					<div id="myCarousel2" class="carousel slide" data-ride="carousel">
+						<ol class="carousel-indicators">
+								<li data-target="#myCarousel2" data-slide-to="0" class="active"></li>
+								<li data-target="#myCarousel2" data-slide-to="1"></li>
+								<li data-target="#myCarousel2" data-slide-to="2"></li>
+							</ol>
+						<!-- 廣告輪播列表 -->
+						  <div class="carousel-inner" role="listbox">
+							<div class="item active">
+								<a href = "http://asianbeat.com/ct/feature/issue_cosplay/cosplayer/taiwan/16/">
+									<img src="http://asianbeat.com/files/2015/11/f563aa27ca09a0.jpg" 
+									href = "http://asianbeat.com/ct/feature/issue_cosplay/cosplayer/taiwan/16/" 
+									data-color="#eee">
+									<div class="carousel-caption">
+										<h3>廣告輪播1</h3>
+									</div>
+								</a>
+							</div>
+							<div class="item">
+								<a href = "http://asianbeat.com/ct/feature/marugoto/">
+									<img src="http://asianbeat.com/files/2016/07/f5791c06aa844d.jpg" 
+									href = "http://asianbeat.com/ct/feature/marugoto/" 
+									data-color="#eee">
+									<div class="carousel-caption">
+										<h3>廣告輪播2</h3>
+									</div>
+								</a>
+							</div>
+							<div class="item ">
+								<a href = "http://asianbeat.com/ct/feature/issue_cosplay/cosplayer/">
+									<img src="http://asianbeat.com/files/2012/01/f4f1e5e5b6a2f6.jpg" 
+									href = "http://asianbeat.com/ct/feature/issue_cosplay/cosplayer/"
+									data-color="#eee">
+									<div class="carousel-caption">
+										<h3>廣告輪播3</h3>
+									</div>
+								</a>
+							</div>
+						  </div>
+					</div>
+					<!--廣告-->
+				</div>
+				<!--container-fluid.row-fluid.span2 結束 旁邊預設廣告-->
+			</div>
+		</div>
+	</body>
+</html>
