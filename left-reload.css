@@ -284,24 +284,6 @@ table {
   position:relative;
 }
 
-#sceneinformationbox div{
-  font-family: 微軟正黑體;
-  padding-left: 10%;
-  padding-top: 2%;
-  font-size: 20px;
-  background-color: white;
-  margin-top: 5%;
-  margin-left: 1%;
-  border-style:solid;
-  border-radius:10px;
-  border-color:#adadad;
-  border-width:5px;
-  height:15%;
-  width: 80%;
-  overflow:hidden;
-  position: relative;
-}
-
 #sceneinformationbox div:hover{
   border-style:solid;
   border-radius:10px;
@@ -330,8 +312,40 @@ table {
   margin-left: -10%;
   position:absolute;
 } 
+#sceneinformationbox p{
+  font-size: 20px;
+  font-family: Caslon;
+  margin-top: 6%;
+  margin-left: 63%;
+  position:absolute;
+} 
+
+#sceneinformationbox h4{
+  font-family: 標楷體;
+  margin-top: 10%;
+  margin-left: 63%;
+  position:absolute;
+} 
+#sceneinformationbox h4:hover{
+  color:blue;
+}
 
 .scene1{
+  font-family: 微軟正黑體;
+  padding-left: 10%;
+  padding-top: 2%;
+  font-size: 20px;
+  background-color: white;
+  margin-top: 5%;
+  margin-left: 1%;
+  border-style:solid;
+  border-radius:10px;
+  border-color:#adadad;
+  border-width:5px;
+  height:15%;
+  width: 80%;
+  overflow:hidden;
+  position: relative;
   background-position: 15% 30%;
   background-image:url(https://i.imgur.com/la2Cgpf.jpg);
   background-size:30% 90%;
@@ -473,4 +487,8 @@ table {
 
 .logintoregister h3{
   font-family: 微軟正黑體;
+}
+
+.animatecalendar{
+  position: relative;
 }

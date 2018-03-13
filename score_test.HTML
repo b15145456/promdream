@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<title>評分</title> 
+<style type="text/css"> 
+.starWrapper{border-style:none;padding:5px;width:120px;} 
+.starWrapper img{cursor:pointer;} 
+</style> 
+<script type="text/javascript"> 
+var score_reset =false;
+function rate(obj,oEvent){ 
+//================== 
+// 圖片地址設置 
+//================== 
+var imgSrc = 'http://www.jb51.net/upload/20080508122008586.gif'; //沒有填色的星星
+var imgSrc_2 = 'http://www.jb51.net/upload/20080508122010810.gif'; //打分後有顏色的星星
+//--------------------------------------------------------------------------- 
+
+if(score_reset){
+  obj.rateFlag=false;
+  score_reset =false;
+}  
+if(obj.rateFlag) return; 
+var e = oEvent || window.event; 
+var target = e.target || e.srcElement;  
+var imgArray = obj.getElementsByTagName("img"); 
+for(var i=0;i<imgArray.length;i++){ 
+   imgArray[i]._num = i; 
+   imgArray[i].onclick=function(){ 
+    if(obj.rateFlag) return;
+    obj.rateFlag=true; 
+    alert(this._num+1);       //this._num+1這個數字寫入到數據庫中,作為評分的依據
+   }; 
+} 
+if(target.tagName=="IMG"){ 
+   for(var j=0;j<imgArray.length;j++){ 
+    if(j<=target._num){ 
+     imgArray[j].src=imgSrc_2; 
+    } else { 
+     imgArray[j].src=imgSrc; 
+    } 
+   } 
+} else { 
+   for(var k=0;k<imgArray.length;k++){ 
+    imgArray[k].src=imgSrc; 
+   } 
+} 
+}
+function scorereset(){ 
+  score_reset =true;
+  var imgSrc = 'http://www.jb51.net/upload/20080508122008586.gif'; //沒有填色的星星
+  var imgArray = document.getElementById("score").getElementsByTagName("img");
+  for(var i=0;i<imgArray.length;i++){
+  	imgArray[i].src=imgSrc;
+  }
+  
+}
+/*定义一个ajax*/
+/*
+function InitAjax()
+{
+ var ajax=false; 
+ try { 
+  ajax = new ActiveXObject("Msxml2.XMLHTTP"); 
+ } catch (e) { 
+  try { 
+   ajax = new ActiveXObject("Microsoft.XMLHTTP"); 
+  } catch (E) { 
+   ajax = false; 
+  } 
+ }
+ if (!ajax && typeof XMLHttpRequest!='undefined') { 
+  ajax = new XMLHttpRequest(); 
+ } 
+ return ajax;
+}
+//然后在你的rate函数里加上
+//用ajax进行传值
+/*
+ var url = "你后台的页面?value="+this._num+1;
+ var ajax = InitAjax();
+ ajax.open("GET", url, true); 
+ ajax.onreadystatechange = function() {
+  if (ajax.readyState == 4 && ajax.status == 200) {
+    response = ajax.responseText;//这里是指你从后台返回的值
+  } 
+ }
+ ajax.send(null);
+}*/
+</script> 
+
+<body> 
+<div id="score" class="starWrapper" onmouseover="rate(this,event)"> 
+	<img src="http://www.jb51.net/upload/20080508122008586.gif" title="很爛" />
+	<img src="http://www.jb51.net/upload/20080508122008586.gif" title="一般" />
+	<img src="http://www.jb51.net/upload/20080508122008586.gif" title="還好" />
+	<img src="http://www.jb51.net/upload/20080508122008586.gif" title="較好" />
+	<img src="http://www.jb51.net/upload/20080508122008586.gif" title="很好" /> 
+	<img src="http://www.jb51.net/upload/20080508122008586.gif" title="666666" />
+</div> 
+
+<input name="resetscore" type="button" value="重評" onclick="scorereset()">
+
+</body>
+
+</html>
