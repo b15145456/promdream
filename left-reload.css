@@ -263,6 +263,12 @@ table {
   opacity: 0.8;
 }
 
+#scenesearchsubmit{
+  position: absolute;
+  margin-left: 105%;
+  margin-top: -12.5%;
+}
+
 .sceneheaderbutton:hover{
   font-weight:bold;
   border-bottom:thick solid #7FB2F0;
@@ -279,7 +285,7 @@ table {
   border-style:solid;
   border-color: #7FB2F0;
   border-width:5px;
-  height:1000px;
+  height:1500px;
   margin-top: 5%;
   position:relative;
 }
@@ -296,7 +302,7 @@ table {
 
 #sceneinformationbox ul{
   border-style: none;
-  margin-top: 1%;
+  margin-top: 3%;
   margin-left: 40%;
   text-align:left;
   position: absolute;
@@ -315,14 +321,14 @@ table {
 #sceneinformationbox p{
   font-size: 20px;
   font-family: Caslon;
-  margin-top: 6%;
+  margin-top: 12%;
   margin-left: 63%;
   position:absolute;
 } 
 
 #sceneinformationbox h4{
   font-family: 標楷體;
-  margin-top: 10%;
+  margin-top: 17%;
   margin-left: 63%;
   position:absolute;
 } 
@@ -346,12 +352,13 @@ table {
   width: 80%;
   overflow:hidden;
   position: relative;
-  background-position: 15% 30%;
+  background-position: 150px 50px;
   background-image:url(https://i.imgur.com/la2Cgpf.jpg);
-  background-size:30% 90%;
+  background-size:30% 60%;
   background-repeat:no-repeat;
   opacity: 0.8;
 }
+
 
 #scenead{
   margin-left: 3%;
@@ -362,21 +369,31 @@ table {
 #scenead h5{
    margin-top: -5%;
 }
-.scenesearchbox{
+.scenechoosebox{
+   margin-top: 1%;
    position: absolute;
 }
-.scenesearchbox h4{
+.scenechoosebox h4{
   display: inline-block;
 }
-.scenesearch{
+.scenechoose{
  position: relative;
  color:#0066FF;
  display: inline-block;
  cursor: pointer;
 }  
-.scenesearch:hover{
+.scenechoose:hover{
   color:#880000;
   text-decoration:underline;
+}
+
+#scenesearchbox{
+  position: absolute;
+  margin-left:10%;
+  margin-top: 1.5%;
+}
+#scenesearchbox p{
+  display: inline-block;
 }
 .LoginForm{
   position: absolute;
@@ -491,4 +508,77 @@ table {
 
 .animatecalendar{
   position: relative;
+}
+
+.scenedetail{
+  padding: 5%;
+  margin-top: 60px;
+  border-bottom-style:groove;
+  border-width:3px;  
+  position: relative;
+  height: auto;
+}
+.scenedetail h3{
+  font-family: 微軟正黑體;
+  position: absolute;
+}
+.scenedetail h5{
+  font-family: Verdana;
+  margin-top: 8%;
+  position: absolute;
+}
+
+.scenedetail p{
+  margin-top:15%;
+  position: absolute;
+  cursor: pointer;
+}
+
+.scenedetail table{
+  margin-left: 25%;
+  position: relative;
+
+}
+#scenedetailphoto img{
+  height: 150px;
+  max-width: 300px;
+}
+
+#scenecomment{
+  word-break: break-all;
+  top:20px;
+  left:300px;
+  width:300px;
+  font-family: 微軟正黑體;
+  text-align:left;
+  position: relative;
+}
+
+.scenecommentmore{
+  top:20px;
+  left:200px;
+  color:#0066FF;
+  cursor: pointer;
+  position: relative;
+}
+
+.scenedetailreturn{
+  display: inline-block;
+  left: 50px;
+  margin-left: 10px;
+  padding-top: 10px;
+  background-color: #2F4858;
+  width: 150px;
+  height: 30px;
+  position: relative;
+  font-size: 18px;
+  color: white;
+  border-radius:20px;
+  font-family: 標楷體;
+  opacity: 0.7;
+}
+
+.scenedetailreturn:hover{
+  opacity: 1;
+  cursor: pointer;
 }
