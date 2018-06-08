@@ -313,9 +313,10 @@ table {
 }
 
 #sceneinformationbox h3{
-  font-family: 標楷體;
+  font-family: Verdana;
   margin-top: -2%;
   margin-left: -10%;
+  font-size:30px;
   position:absolute;
 } 
 #sceneinformationbox p{

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset = "utf-8">
+		<meta http-equiv="Content-Type" content="text/html; charsset=utf-8">
 		<meta name = "description" content = "">
 		<!--上述為網址外部描述-->
 		<title>外拍場景資訊</title>
@@ -13,21 +13,71 @@
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"  type="text/css">
 		<link href="bootstrap/css/bootstrap.css" rel="stylesheet"  type="text/css">
 		<link href="Gallery-2.25.1/css/blueimp-gallery.css" rel="stylesheet"  type="text/css">
+
 		
 		<script src="jquery-3.2.1.js"></script>
 		<script src="bootstrap/js/bootstrap.js"></script>
 		<script src="bootstrap/js/bootstrap.min.js"></script>
 		<script src="main-coser.js"></script>
 		
-		<script src="Gallery-2.25.1/js/blueimp-gallery-video.js"></script>
 
 		<!--響應式套用 p.s 這裡有一個小問題，根據你的行位 若將18行的引進js移到16行，將無法造成輪播效果，請各位注意-->
 	</head>
+  <script>
+    function SortbyName() {
+          var resbonse=$.ajax({
+            url:"scenesorttype.php", //the page containing php script
+            type: "post", //request type,
+            dataType: "text",
+            async:false, 
+            data: {registration: "success", type: "1"},
+            success:function(result){
+                    document.getElementById("sceneinformationbox").innerHTML=result;
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){  
+                  alert("error : "+"網頁錯誤");  
+            }
+
+         });
+     }
+     function SortbyCost() {
+          var resbonse=$.ajax({
+            url:"scenesorttype.php", //the page containing php script
+            type: "post", //request type,
+            dataType: "text",
+            async:false, 
+            data: {registration: "success", type: "2"},
+            success:function(result){
+                    document.getElementById("sceneinformationbox").innerHTML=result;
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){  
+                  alert("error : "+"網頁錯誤");  
+            }
+
+         });
+     }
+     function SortbyEval() {
+          var resbonse=$.ajax({
+            url:"scenesorttype.php", //the page containing php script
+            type: "post", //request type,
+            dataType: "text",
+            async:false, 
+            data: {registration: "success", type: "3"},
+            success:function(result){
+                    document.getElementById("sceneinformationbox").innerHTML=result;
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){  
+                  alert("error : "+"網頁錯誤");  
+            }
+
+         });
+     }
+</script>
 
 <body id=body>
    <div id=logoarea1>
    </div>
-
+   
   <div id=logoarea2>
   </div>
   <div id=otherfunctionbox>
@@ -126,13 +176,13 @@
       <div class=span3>
         <div class=scenechoosebox>
           <h4>排序&nbsp&nbsp:&nbsp</h4>
-          <div  class=scenechoose>
+          <div  class="scenechoose"  onclick="SortbyName()"> 
               依名稱↓
           </div>
-          <div  class=scenechoose>
+          <div  class=scenechoose   onclick="SortbyCost()">
               依價格↓
           </div>
-          <div  class=scenechoose>
+          <div  class=scenechoose   onclick="SortbyEval()">
               依評價↓
           </div>  
         </div>
@@ -145,7 +195,7 @@
       <div class="scenedetailreturn">上一頁</div>
       <div class="scenedetailreturn">提供資訊</div>
       <div id=sceneinformationbox>
-         <?php sceneinfoinquire(1,3); ?>            
+         <?php sceneinfoinquire(1,3,1); ?>            
       </div>
     </div>
   <!--外拍場景資訊欄-->
@@ -202,7 +252,7 @@
 			<div class="carousel-inner" role="listbox">
 				<div class="item active">
 					<a href = "https://news.gamme.com.tw/1453884">
-						<img src="https://images.gamme.com.tw/news2/2016/38/84/q5iYpaKVlKCcrqQ.jpg" 
+						<img src="http://static.ettoday.net/images/1967/d1967640.jpg" 
 						href = "https://news.gamme.com.tw/1453884" 
 						data-color="#eee">
 						<div class="carousel-caption">

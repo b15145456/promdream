@@ -1,15 +1,23 @@
 <style>
 	<?php include 'left-reload.css'; ?>
 </style>
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <?php
-   
+   error_reporting(0); 
    //查詢Query的結果
-   function sceneinfoinquire($pagenum,$displaynum){
+   function sceneinfoinquire($pagenum,$displaynum,$type){
    		$connection = new PDO('mysql:host=localhost;dbname=promdream;charset=utf8', 'root', '');
         $headnum=$displaynum*($pagenum-1);//前面顯示的資料筆數
         $limit = "limit ".$headnum.",".$displaynum;
-		$statement = $connection->query("select * from photoscene Limit $headnum,$displaynum;");
+        if ($type==1){
+			$statement = $connection->query("select * from photoscene order by name Limit $headnum,$displaynum;");
+		}
+        if ($type==2){
+			$statement = $connection->query("select * from photoscene order by cost Limit $headnum,$displaynum;");
+		}
+		if ($type==3){
+			$statement = $connection->query("select * from photoscene order by eval Limit $headnum,$displaynum;");
+		}	
 
 		foreach($statement as $row){
 			echo '<div class= "scene1"  onclick="javascript:location.href=\'PhotoScenesdetial.html\'">  
