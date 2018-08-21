@@ -26,7 +26,7 @@
   <script>
     function SortbyName() {
           var resbonse=$.ajax({
-            url:"scenesorttype.php", //the page containing php script
+            url:"scenephp.php", //the page containing php script
             type: "post", //request type,
             dataType: "text",
             async:false, 
@@ -35,14 +35,14 @@
                     document.getElementById("sceneinformationbox").innerHTML=result;
             },
             error: function(XMLHttpRequest, textStatus, errorThrown){  
-                  alert("error : "+"網頁錯誤");  
+                  console.log(xhr.responseText);
             }
-
          });
+         document.getElementById("scenechoosebox").style.display=""; 
      }
      function SortbyCost() {
           var resbonse=$.ajax({
-            url:"scenesorttype.php", //the page containing php script
+            url:"scenephp.php", //the page containing php script
             type: "post", //request type,
             dataType: "text",
             async:false, 
@@ -51,14 +51,14 @@
                     document.getElementById("sceneinformationbox").innerHTML=result;
             },
             error: function(XMLHttpRequest, textStatus, errorThrown){  
-                  alert("error : "+"網頁錯誤");  
+                  console.log(xhr.responseText); 
             }
 
          });
      }
      function SortbyEval() {
           var resbonse=$.ajax({
-            url:"scenesorttype.php", //the page containing php script
+            url:"scenephp.php", //the page containing php script
             type: "post", //request type,
             dataType: "text",
             async:false, 
@@ -67,10 +67,26 @@
                     document.getElementById("sceneinformationbox").innerHTML=result;
             },
             error: function(XMLHttpRequest, textStatus, errorThrown){  
-                  alert("error : "+"網頁錯誤");  
+                  console.log(xhr.responseText);  
             }
 
          });
+     }
+     function sceneComment(ID) {
+          var resbonse=$.ajax({
+            url:"sceneDetail.php", //the page containing php script
+            type: "post", //request type,
+            dataType: "text",
+            async:false, 
+            data: {registration: "success",type: "1",sceneID:ID},
+            success:function(result){
+                    document.getElementById("sceneinformationbox").innerHTML=result;
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){  
+                  console.log(xhr.responseText); 
+            }
+         });
+         document.getElementById("scenechoosebox").style.display="none";
      }
 </script>
 
@@ -81,7 +97,7 @@
   <div id=logoarea2>
   </div>
   <div id=otherfunctionbox>
-        <div  class=headerbutton onclick="javascript:location.href='main-coser.html'">  
+        <div  class=headerbutton onclick="javascript:location.href='main-coser.php'">  
           <div>回首頁</div>
         </div>
         <div  class=headerbutton>  
@@ -99,7 +115,7 @@
         <div  class=headerbutton>
         	<div>外拍場景資訊</div>
         </div>
-        <div  class="headerbutton otherlogin" onclick="javascript:location.href='login.html'">
+        <div  class="headerbutton otherlogin" onclick="javascript:location.href='login.php'">
           <div>登入</div>
         </div>
   </div>		
@@ -162,7 +178,7 @@
   </div>
   <!--外拍場景功能欄 row1 end-->
   <div class="row-fluid">
-      <div class=span6>
+      <div class="span6" style="margin-top: 80px;">
         <form action="" id = "scenesearchbox" onsubmit = "">
           <div>
             <p>關鍵字搜尋&nbsp&nbsp:&nbsp</p>
@@ -173,8 +189,8 @@
           </div>
         </form>        
       </div>
-      <div class=span3>
-        <div class=scenechoosebox>
+      <div class=span3 style="margin-top: 80px;">
+        <div id="scenechoosebox">
           <h4>排序&nbsp&nbsp:&nbsp</h4>
           <div  class="scenechoose"  onclick="SortbyName()"> 
               依名稱↓
@@ -192,10 +208,10 @@
   <div class="row-fluid">
     <div class="span1"></div>
     <div class="span7">
-      <div class="scenedetailreturn">上一頁</div>
-      <div class="scenedetailreturn">提供資訊</div>
-      <div id=sceneinformationbox>
-         <?php sceneinfoinquire(1,3,1); ?>            
+      <div class="scenedetailreturn" onclick="javascript:location.href='scenearticle.php'">發表文章</div>
+      <div class="scenedetailreturn" onclick="javascript:location.href='sceneprovide.html'">提供資訊</div>
+      <div id=sceneinformationbox style="overflow-y:scroll;">
+         <?php sceneinfoinquire(1); ?>            
       </div>
     </div>
   <!--外拍場景資訊欄-->

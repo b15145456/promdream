@@ -147,9 +147,9 @@
    
    function testsize(size){
    	   var MB = size/1000;
-   	   		if(MB<3){
+   	   		if(MB<1){
            		document.getElementById('photosubmit').disabled=true;
-           		document.getElementById('photosize').innerHTML="檔案小於3MB!";
+           		document.getElementById('photosize').innerHTML="檔案小於1MB!";
    	   		}
    	   		else if(MB>6){
    	   	   		document.getElementById('photosubmit').disabled=true;
@@ -168,7 +168,3 @@
 		return(true);
     }//檢測空白
 </script>
-
-<?php
-
-?>

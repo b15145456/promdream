@@ -3,25 +3,39 @@
 </style>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <?php
-   error_reporting(0); 
+  error_reporting(0);
+  $type= $_POST['type'];
+  $regstration = $_POST['registration'];
+  if($regstration=="success"){
+      // some action goes here under php
+      $myArr =  sceneinfoinquire($type);
+      //$myJSON = json_encode($myArr,JSON_UNESCAPED_UNICODE);編碼中文要這樣寫
+      //echo $myJSON;單純用ajax取得資料,不回傳
+  } 
+   session_start();
+   if(!isset($_SESSION)){$loginstate = 0;}
+   else{
+      $loginstate=$_SESSION['loginstate'];
+      $username=$_SESSION['username'];
+      $ID=$_SESSION['ID'];
+   } 
    //查詢Query的結果
-   function sceneinfoinquire($pagenum,$displaynum,$type){
+   function sceneinfoinquire($type){
    		$connection = new PDO('mysql:host=localhost;dbname=promdream;charset=utf8', 'root', '');
         $headnum=$displaynum*($pagenum-1);//前面顯示的資料筆數
-        $limit = "limit ".$headnum.",".$displaynum;
         if ($type==1){
-			$statement = $connection->query("select * from photoscene order by name Limit $headnum,$displaynum;");
+			$statement = $connection->query("select * from photoscene order by name;");
 		}
         if ($type==2){
-			$statement = $connection->query("select * from photoscene order by cost Limit $headnum,$displaynum;");
+			$statement = $connection->query("select * from photoscene order by cost;");
 		}
 		if ($type==3){
-			$statement = $connection->query("select * from photoscene order by eval Limit $headnum,$displaynum;");
-		}	
-
+			$statement = $connection->query("select * from photoscene order by eval  DESC;");
+		}
 		foreach($statement as $row){
-			echo '<div class= "scene1"  onclick="javascript:location.href=\'PhotoScenesdetial.html\'">  
+			echo '<div id="'.$row['name'].'" class="scene"  onclick="sceneComment(this.id)">  
           			<h3>'.$row['name'].'</h3>
+                <div style="margin-top:30px; position:absolute;"><img src="sceneimg/'.$row['name'].'.jpg" width="250px" height="auto"/></div>
       					<ul>
       		  			<li>地點:'.$row['position'].'</li>
       		  			<li>類型:'.$row['type'].'</li>

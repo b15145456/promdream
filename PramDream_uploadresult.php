@@ -31,11 +31,29 @@
  	echo("標籤 &nbsp&nbsp:".$tag."<br><br>");
  	echo("檔案位置 &nbsp&nbsp:".'promdream/uploadfile/'.$file_name."<br><br>");
 
-    $sql = " SELECT photoID FROM image where photoID = MAX(photoID) ";
+    $sql = " SELECT MAX(photoID) FROM image";
     $result = mysqli_query($conn,$sql);
+    if (!$result) {
+        printf("Error: %s\n", mysqli_error($conn));
+        exit();
+    }
     $row = mysqli_fetch_array($result);
     $photoID=$row[0];
     //先取出目前最大的圖片ID
     //將圖片ID++設為新圖片ID
     //存入圖片
+    $thisID= $row[0]+1;
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    } 
+
+    $sql = "INSERT INTO image (UserID, photoID, name, imageinfo, hashtag)
+    VALUES (3, '".$thisID."', '".$name."', '".$photodetail."' ,'".$tag."')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "上傳圖片成功";
+    } else {
+        echo "上傳失敗: ";
+    }
+    $conn->close();
 ?>
