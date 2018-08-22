@@ -17,17 +17,17 @@
         
 
     	if($regstration=="success"){
- 			$myArr =  sceneinfoinquire(1,1,$type);
+ 			$myArr =  sceneinfoinquire($type);
         }	
    //查詢Query的結果
 
     //第pagenum頁顯示displaynum條資料   
-   function sceneinfoinquire($pagenum,$displaynum,$type){
+   function sceneinfoinquire($type){
    	    global $sceneID;
    		$connection = new PDO('mysql:host=localhost;dbname=promdream;charset=utf8', 'root', '');
         $headnum=$displaynum*($pagenum-1);//前面顯示的資料筆數
         if ($type==1){
-			$statement = $connection->query("select * from scenecomment where 棚名='$sceneID' order by ID Limit $headnum,$displaynum;");
+			$statement = $connection->query("select * from scenecomment where 棚名='$sceneID' order by ID;");
 		}
         if ($type==2){
 			$statement = $connection->query("select * from scenecomment order by 評論評價 Limit $headnum,$displaynum;");
@@ -41,9 +41,9 @@
           <div id="scenedetailphoto">
           <table>
             <tr>
-                <td><a href="background-img/2017-11-11 小手+一槍WCC_9715直樹.jpg" target="_blank"><img src="'.$row['photo1'].'"></a></td>
-                <td>&nbsp&nbsp&nbsp&nbsp&nbsp<a href="background-img/2017-11-11 小手+一槍WCC_9718直樹.jpg" target="_blank"><img src="'.$row['photo2'].'" ></a> </td>
-                <td>&nbsp&nbsp&nbsp&nbsp&nbsp<a href="background-img/2017-11-11 小手+一槍WCC_9636直樹.jpg" target="_blank"><img src="'.$row['photo3'].'" ></a> </td>
+                <td><a href="'.$row['photo1'].'" target="_blank"><img src="'.$row['photo1'].'"></a></td>
+                <td>&nbsp&nbsp&nbsp&nbsp&nbsp<a href="'.$row['photo2'].'" target="_blank"><img src="'.$row['photo2'].'" ></a> </td>
+                <td>&nbsp&nbsp&nbsp&nbsp&nbsp<a href="'.$row['photo3'].'"><img src="'.$row['photo3'].'" ></a> </td>
             </tr>
           </table>
           <div id="scenecomment">'.$row['評論'].'</div>

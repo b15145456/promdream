@@ -1,7 +1,7 @@
 <?php
-	$servername = "61.227.229.175";
-	$username = "nekoto";
-	$password = "z1x2c34";
+	$servername = "localhost";
+	$username = "root";
+	$password = "";
 	$database = "promdream";
 	$conn = null;
 	// Create connection
