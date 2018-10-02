@@ -1,5 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml"> 
+<html> 
 <head> 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 <title>評分</title> 
@@ -57,47 +56,17 @@ function scorereset(){
   
 }
 /*定义一个ajax*/
-/*
-function InitAjax()
-{
- var ajax=false; 
- try { 
-  ajax = new ActiveXObject("Msxml2.XMLHTTP"); 
- } catch (e) { 
-  try { 
-   ajax = new ActiveXObject("Microsoft.XMLHTTP"); 
-  } catch (E) { 
-   ajax = false; 
-  } 
- }
- if (!ajax && typeof XMLHttpRequest!='undefined') { 
-  ajax = new XMLHttpRequest(); 
- } 
- return ajax;
-}
-//然后在你的rate函数里加上
-//用ajax进行传值
-/*
- var url = "你后台的页面?value="+this._num+1;
- var ajax = InitAjax();
- ajax.open("GET", url, true); 
- ajax.onreadystatechange = function() {
-  if (ajax.readyState == 4 && ajax.status == 200) {
-    response = ajax.responseText;//这里是指你从后台返回的值
-  } 
- }
- ajax.send(null);
-}*/
+
+
 </script> 
 
 <body> 
 <div id="score" class="starWrapper" onmouseover="rate(this,event)"> 
-	<img src="http://www.jb51.net/upload/20080508122008586.gif" title="很爛" />
-	<img src="http://www.jb51.net/upload/20080508122008586.gif" title="一般" />
-	<img src="http://www.jb51.net/upload/20080508122008586.gif" title="還好" />
-	<img src="http://www.jb51.net/upload/20080508122008586.gif" title="較好" />
-	<img src="http://www.jb51.net/upload/20080508122008586.gif" title="很好" /> 
-	<img src="http://www.jb51.net/upload/20080508122008586.gif" title="666666" />
+	<img src="http://www.jb51.net/upload/20080508122008586.gif" title="很爛" width="20px" />
+	<img src="http://www.jb51.net/upload/20080508122008586.gif" title="有點爛" width="20px"/>
+	<img src="http://www.jb51.net/upload/20080508122008586.gif" title="普通" width="20px"/>
+	<img src="http://www.jb51.net/upload/20080508122008586.gif" title="還不錯" width="20px"/>
+	<img src="http://www.jb51.net/upload/20080508122008586.gif" title="666" width="20px"/>
 </div> 
 
 <input name="resetscore" type="button" value="重評" onclick="scorereset()">

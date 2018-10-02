@@ -11,9 +11,9 @@
           $username=$_SESSION['username'];
           $ID=$_SESSION['ID'];
         } 
-        $type= $_POST['type']; 
- 		$sceneID= $_POST['sceneID'];
-    	$regstration = $_POST['registration'];
+       $type= $_POST['type']; 
+ 		   $sceneID= $_POST['sceneID'];
+    	 $regstration = $_POST['registration'];
         
 
     	if($regstration=="success"){

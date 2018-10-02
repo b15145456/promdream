@@ -1,11 +1,18 @@
 <!DOCTYPE html>
+
 <?php
-	include("loginstate.php");	
+	include("loginstate.php");
+	include("MainCoserAjaxContent.php");	
 ?>
 <html>
 	<head>
 		<meta charset = "utf-8">
 		<meta name = "description" content = "">
+		<meta http-equiv="Pragma" content="no-cache" />
+
+		<meta http-equiv="Cache-Control" content="no-cache" />
+
+		<meta http-equiv="Expires" content="0" />
 		<!--上述為網址外部描述-->
 		<title>Coser</title>
 		
@@ -29,7 +36,7 @@
 		<!--響應式套用 p.s 這裡有一個小問題，根據你的行位 若將18行的引進js移到16行，將無法造成輪播效果，請各位注意-->
    </head>
    <body id=body >
- 
+   
    <div id=logoarea1>
    </div>
 
@@ -52,25 +59,26 @@
         <div  class=headerbutton onclick="javascript:location.href='PhotoScenes.php'">
         	<div>外拍場景資訊</div>
         </div>
-        <div  class="headerbutton login" onclick="javascript:location.href='login.php'">
-        	<div>登入</div>
-        </div>
+        <?php if($loginstate==1){echo "<div id='personinfo' onclick='personinfo()'><div>個人資訊</div></div>";} else{echo"<div id='personinfo' onclick=javascript:location.href='login.php'><div>登入</div></div>";}?>
+        <div id="personinfodetail">
+  			<div id='presonframe'>
+    		<div id="presondetail">
+            <div id="minipersonimg" style="position:relative"; onclick="javascript:location.href='headimg_upload.php'"; "><img src=<?php if(file_exists('Coserfile/'.$ID.'/headimg.jpg')){echo"Coserfile/".$ID."/headimg.jpg";} else{echo "background-img/if_icon-ios7-plus-empty_211602.png";}?> width="250px" height="auto"/></div>
+      		<div id="personminiinfo">&nbsp<br><?php echo $username; ?></div>
+      		<div style="border:solid 1px black; width:110px; height:5px; margin-left:100px; margin-top:-20px; position: absolute; border-radius: 10px;"><div style="width:<?php echo $contribution%100;?>%;background-color:#00AA00; height: 100%;"><div style="position:absolute;margin-top:-20px;margin-left:90px;font-size:10px;">LV.<?php echo floor($contribution/100)+1;?></div></div></div>
+      		<ul><li onclick="javascript:location.href='personal-info.php'">個人資料</li><li>文章管理</li><li>每日任務</li><li onclick='logout()'>登出</li></ul> 
+    		</div>
+   		</div>
+   		<script>
+			function logout(){
+   				location.href = 'http://localhost/promdream/logout.php'
+ 			}
+ 			function personinfo(){
+        			$("#personinfodetail").fadeToggle(500,"linear");
+ 			}
+		</script>
+		</div>
   </div>
-  <div id="loginstate">
-    <?php 
-       if($loginstate==1){
-       	    echo "登入中<br>";
-   	  		echo $username;
-   	  		echo "<br><input type=button value='登出' onclick='logout()' style='margin-top:10px'>";
-       }
-    ?>
-  </div>
-   
-   <?php
-  if($loginstate==1){
-    echo "<script>document.getElementById('loginstate').style.display='';</script>";
-  }     	    
-  ?>
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators span12">
     <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -79,7 +87,7 @@
   </ol>
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      <img id=headimg  src="http://i.imgur.com/gBzNVdw.jpg" alt="news 1">
+      <img id=headimg  src="background-img/ㄩㄋ.jpg" alt="news 1">
     </div>
     <div class="item">
       <img id=headimg  src="http://i.imgur.com/apnFw1T.jpg" alt="news 2">
@@ -107,12 +115,7 @@
 					    <br>
 						<li>&nbsp&nbsp&nbsp網站更新&通知</li>
 						<br><br>
-						<li><a href="" title="詳細說明">&nbsp&nbsp&nbsp最近有非常多壞人出沒請特別小心</a></li>
-						<li><a href="" title="詳細說明">&nbsp&nbsp&nbsp2018/2/28 5:00系統更新</a></li>
-						<li><a href="" title="詳細說明">&nbsp&nbsp&nbsp新增功能:經驗值系統</a></li>
-						<li><a href="" title="詳細說明">&nbsp&nbsp&nbsp圖片資料庫更動 臨時維修</a></li>
-						<li><a href="" title="詳細說明">&nbsp&nbsp&nbsp台南新棚推出最新優惠</a></li>
-						<li><a href="" title="詳細說明">&nbsp&nbsp&nbsp3月台北CWT展<活動資訊></a></li>
+						<?php MainCoserNoticerequire(); ?>
 						<br>
 						<br>
 					</ul>
@@ -122,283 +125,58 @@
 				<div class="span8">
 					<div class = "CA-box row">
 							<div id=searchtitle>熱門作品</div>
+        					<div class="MainActReturn" onclick="javascript:location.href='MainActiveProvide.html'">提供活動資訊</div>
+      						<style>
+      						.MainActReturn{
+  								margin-left:54%;
+  				            	padding-top: 10px;
+  								background-color: #2F4858;
+  								width: 8vw;
+  								height: 30px;
+  							    position: absolute;
+  								font-size: 18px;
+  								color: white;
+  								font-family: 標楷體;
+  								opacity: 0.7;
+  								text-align:center;
+  							}
+  							.MainActReturn:hover{
+  								opacity: 1;
+  								cursor: pointer;
+							}	
+      						</style>
 							<form action="" id = "searchbox" onsubmit = "">
 								<div>
-								<input type = "text" name = "q" size = "20" />
-								<input type = "submit" value = "Search" />
+								<input type = "text" name = "mainsearch" size = "20" />
+								<input style="margin-top:-9px;" type = "submit" value = "Search" />
 								</div>
 							</form>
+ 
 						<!--6/14 新增熱門作品搜尋列-->
 						<div id="myCarousel1" class="carousel slide">
 											
 							<div class="carousel-inner" role = "listbox">
 								<div class="item active">
-									<div id="firstCA-box2" class = "CA-box2" alt = "first slide">
-										<div>
-											<span>Mon</span>
-											<a href="" >
-											<img src="http://asianbeat.com/files/2016/07/f577b572e9d397.jpg" />
-											</a>
-											<a href="https://www.facebook.com/monpink1215/" >
-											・CN: Mon
-											・生日: 1月21日
-											・居住地: 台灣(台北)
-											・愛好: Cosplay、養狗狗、打音遊戲
-											・最喜歡的角色：初音未來
-											</a>
-										</div>
-										<div>
-											<span>Stay</span>
-											<a href="" >
-											<img src="http://asianbeat.com/files/2016/07/f577b569550139.jpg" />
-											</a>
-											<a href="http://z9x9.com/archives/305458" >
-											・CN: StayXXXX
-											・誕生日生日: 10月31日
-											・居住地: 台灣(台北)
-											・愛好:貓、讀書、電影
-											・最喜歡的角色：《皇家國教騎士團》 阿卡多
-											</a>
-										</div>
-										<div>
-											<span>COSERごんごま</span>
-											<a href="https://news.gamme.com.tw/1500453" >
-											<img src="https://images.gamme.com.tw/news2/2017/04/53/qJeao5_ekKWYrKQ-270x180.jpg" />
-											</a>
-											<a href="https://news.gamme.com.tw/1500453" >
-											巨乳COSER來台灣《吃糖葫蘆嚇一跳》最後一顆竟然是孔明的陷阱……
-											日本的肉系巨乳COSERごんごま最近造訪台灣參與同人活動，同時大啖各種美食小吃，但是當她吃起
-											</a>
-										</div>
-										<div >
-											<span>林夆</span>
-											<a href="" >
-											<img src="background-img/下載.jpg" />
-											</a>
-											<a href="http://z9x9.com/archives/305458" >
-											7大理由建議不要輕易飼養！林夆並不只是你們的眼中的胖子</a>
-										</div>
-										<div >
-											<span>林夆</span>
-											<a href="" >
-											<img src="background-img/下載.jpg" />
-											</a>
-											<a href="http://z9x9.com/archives/305458" >
-											7大理由建議不要輕易飼養！林夆並不只是你們的眼中的胖子</a>
-										</div>
-										<div >
-											<span>林夆</span>
-											<a href="" >
-											<img src="background-img/下載.jpg" />
-											</a>
-											<a href="http://z9x9.com/archives/305458" >
-											7大理由建議不要輕易飼養！林夆並不只是你們的眼中的胖子</a>
-										</div>
-										<div>
-											<span>林夆</span>
-											<a href="" >
-											<img src="background-img/下載.jpg" />
-											</a>
-											<a href="http://z9x9.com/archives/305458" >
-											7大理由建議不要輕易飼養！林夆並不只是你們的眼中的胖子</a>
-										</div>
-										<div>
-											<span>林夆</span>
-											<a href="" >
-											<img src="background-img/下載.jpg" />
-											</a>
-											<a href="http://z9x9.com/archives/305458" >
-											7大理由建議不要輕易飼養！林夆並不只是你們的眼中的胖子</a>
-										</div>
-										<div>
-											<span>林夆</span>
-											<a href="" >
-											<img src="background-img/下載.jpg" />
-											</a>
-											<a href="http://z9x9.com/archives/305458" >
-											7大理由建議不要輕易飼養！林夆並不只是你們的眼中的胖子</a>
-										</div>
-										<div>
-											<span>林夆</span>
-											<a href="" >
-											<img src="background-img/下載.jpg" />
-											</a>
-											<a href="http://z9x9.com/archives/305458" >
-											7大理由建議不要輕易飼養！林夆並不只是你們的眼中的胖子</a>
-										</div>
+								<div style="margin-left: 45%; margin-bottom: 50px; font-size: 30px;">官方消息</div>
+									<div id="firstCA-box2" class = "CA-box2" alt = "first slide" style = "padding-left:60px;">
+										<?php MainCoserinfoinquire("夢之舞會官方"); ?> 
 									</div>
 								</div>
 								<!--container-fluid.row-fluid.span8 firstCA-box2-->
 								
 								<div class="item">
-									<div id="secondCA-box2" class = "CA-box2" alt = "second slide">
-										<div>
-											<span>林佑頴</span>
-											<a href="" >
-											<img src="background-img/便便.jpg" />
-											</a>
-											<a href="http://www.teepr.com/256326/killianhuang/10%E5%80%8B%E9%97%9C%E6%96%BC%E4%BD%A0%E7%9A%84%E4%BE%BF%E4%BE%BF%E7%9A%84%E9%87%8D%E8%A6%81%E7%9F%A5%E8%AD%98%E3%80%82%E5%8E%9F%E4%BE%86%E7%BD%B5%E4%BA%BA%E5%AE%B6%E3%80%8C%E4%BD%A0%E5%8E%BB%E5%90%83/" >
-											10個關於你的便便的重要知識</a>
-										</div>
-										<div>
-											<span>林佑頴</span>
-											<a href="" >
-											<img src="background-img/便便.jpg" />
-											</a>
-											<a href="http://www.teepr.com/256326/killianhuang/10%E5%80%8B%E9%97%9C%E6%96%BC%E4%BD%A0%E7%9A%84%E4%BE%BF%E4%BE%BF%E7%9A%84%E9%87%8D%E8%A6%81%E7%9F%A5%E8%AD%98%E3%80%82%E5%8E%9F%E4%BE%86%E7%BD%B5%E4%BA%BA%E5%AE%B6%E3%80%8C%E4%BD%A0%E5%8E%BB%E5%90%83/" >
-											10個關於你的便便的重要知識</a>
-										</div>
-										<div>
-											<span>林佑頴</span>
-											<a href="" >
-											<img src="background-img/便便.jpg" />
-											</a>
-											<a href="http://www.teepr.com/256326/killianhuang/10%E5%80%8B%E9%97%9C%E6%96%BC%E4%BD%A0%E7%9A%84%E4%BE%BF%E4%BE%BF%E7%9A%84%E9%87%8D%E8%A6%81%E7%9F%A5%E8%AD%98%E3%80%82%E5%8E%9F%E4%BE%86%E7%BD%B5%E4%BA%BA%E5%AE%B6%E3%80%8C%E4%BD%A0%E5%8E%BB%E5%90%83/" >
-											10個關於你的便便的重要知識</a>
-										</div>
-										<div>
-											<span>林佑頴</span>
-											<a href="" >
-											<img src="background-img/便便.jpg" />
-											</a>
-											<a href="http://www.teepr.com/256326/killianhuang/10%E5%80%8B%E9%97%9C%E6%96%BC%E4%BD%A0%E7%9A%84%E4%BE%BF%E4%BE%BF%E7%9A%84%E9%87%8D%E8%A6%81%E7%9F%A5%E8%AD%98%E3%80%82%E5%8E%9F%E4%BE%86%E7%BD%B5%E4%BA%BA%E5%AE%B6%E3%80%8C%E4%BD%A0%E5%8E%BB%E5%90%83/" >
-											10個關於你的便便的重要知識</a>
-										</div>
-										<div>
-											<span>林佑頴</span>
-											<a href="" >
-											<img src="background-img/便便.jpg" />
-											</a>
-											<a href="http://www.teepr.com/256326/killianhuang/10%E5%80%8B%E9%97%9C%E6%96%BC%E4%BD%A0%E7%9A%84%E4%BE%BF%E4%BE%BF%E7%9A%84%E9%87%8D%E8%A6%81%E7%9F%A5%E8%AD%98%E3%80%82%E5%8E%9F%E4%BE%86%E7%BD%B5%E4%BA%BA%E5%AE%B6%E3%80%8C%E4%BD%A0%E5%8E%BB%E5%90%83/" >
-											10個關於你的便便的重要知識</a>
-										</div>
-										<div>
-											<span>林佑頴</span>
-											<a href="" >
-											<img src="background-img/便便.jpg" />
-											</a>
-											<a href="http://www.teepr.com/256326/killianhuang/10%E5%80%8B%E9%97%9C%E6%96%BC%E4%BD%A0%E7%9A%84%E4%BE%BF%E4%BE%BF%E7%9A%84%E9%87%8D%E8%A6%81%E7%9F%A5%E8%AD%98%E3%80%82%E5%8E%9F%E4%BE%86%E7%BD%B5%E4%BA%BA%E5%AE%B6%E3%80%8C%E4%BD%A0%E5%8E%BB%E5%90%83/" >
-											10個關於你的便便的重要知識</a>
-										</div>
-										<div>
-											<span>林佑頴</span>
-											<a href="" >
-											<img src="background-img/便便.jpg" />
-											</a>
-											<a href="http://www.teepr.com/256326/killianhuang/10%E5%80%8B%E9%97%9C%E6%96%BC%E4%BD%A0%E7%9A%84%E4%BE%BF%E4%BE%BF%E7%9A%84%E9%87%8D%E8%A6%81%E7%9F%A5%E8%AD%98%E3%80%82%E5%8E%9F%E4%BE%86%E7%BD%B5%E4%BA%BA%E5%AE%B6%E3%80%8C%E4%BD%A0%E5%8E%BB%E5%90%83/" >
-											10個關於你的便便的重要知識</a>
-										</div>
-										<div>
-											<span>林佑頴</span>
-											<a href="" >
-											<img src="background-img/便便.jpg" />
-											</a>
-											<a href="http://www.teepr.com/256326/killianhuang/10%E5%80%8B%E9%97%9C%E6%96%BC%E4%BD%A0%E7%9A%84%E4%BE%BF%E4%BE%BF%E7%9A%84%E9%87%8D%E8%A6%81%E7%9F%A5%E8%AD%98%E3%80%82%E5%8E%9F%E4%BE%86%E7%BD%B5%E4%BA%BA%E5%AE%B6%E3%80%8C%E4%BD%A0%E5%8E%BB%E5%90%83/" >
-											10個關於你的便便的重要知識</a>
-										</div>
-										<div>
-											<span>林佑頴</span>
-											<a href="" >
-											<img src="background-img/便便.jpg" />
-											</a>
-											<a href="http://www.teepr.com/256326/killianhuang/10%E5%80%8B%E9%97%9C%E6%96%BC%E4%BD%A0%E7%9A%84%E4%BE%BF%E4%BE%BF%E7%9A%84%E9%87%8D%E8%A6%81%E7%9F%A5%E8%AD%98%E3%80%82%E5%8E%9F%E4%BE%86%E7%BD%B5%E4%BA%BA%E5%AE%B6%E3%80%8C%E4%BD%A0%E5%8E%BB%E5%90%83/" >
-											10個關於你的便便的重要知識</a>
-										</div>
-										<div>
-											<span>林佑頴</span>
-											<a href="" >
-											<img src="background-img/便便.jpg" />
-											</a>
-											<a href="http://www.teepr.com/256326/killianhuang/10%E5%80%8B%E9%97%9C%E6%96%BC%E4%BD%A0%E7%9A%84%E4%BE%BF%E4%BE%BF%E7%9A%84%E9%87%8D%E8%A6%81%E7%9F%A5%E8%AD%98%E3%80%82%E5%8E%9F%E4%BE%86%E7%BD%B5%E4%BA%BA%E5%AE%B6%E3%80%8C%E4%BD%A0%E5%8E%BB%E5%90%83/" >
-											10個關於你的便便的重要知識</a>
-										</div>
+								<div style="margin-left: 45%; margin-bottom: 50px; font-size: 30px;">優惠資訊</div>
+									<div id="secondCA-box2" class = "CA-box2" alt = "second slide" style="margin-left:5%;">
+										<?php MainCoserinfoinquire("優惠"); ?> 
 									</div>
 								</div>
 								<!--container-fluid.row-fluid.span8 firstCA-box2-->
 								
 								
 								<div class="item">
-									<div id="thirdCA-box2" class = "CA-box2" alt = "third slide">
-										<div>
-											<span>張晉</span>
-											<a href="" >
-											<img src="background-img/便便.jpg" />
-											</a>
-											<a href="http://www.teepr.com/256326/killianhuang/10%E5%80%8B%E9%97%9C%E6%96%BC%E4%BD%A0%E7%9A%84%E4%BE%BF%E4%BE%BF%E7%9A%84%E9%87%8D%E8%A6%81%E7%9F%A5%E8%AD%98%E3%80%82%E5%8E%9F%E4%BE%86%E7%BD%B5%E4%BA%BA%E5%AE%B6%E3%80%8C%E4%BD%A0%E5%8E%BB%E5%90%83/" >
-											10個關於你的便便的重要知識</a>
-										</div>
-										<div>
-											<span>林佑頴</span>
-											<a href="" >
-											<img src="background-img/便便.jpg" />
-											</a>
-											<a href="http://www.teepr.com/256326/killianhuang/10%E5%80%8B%E9%97%9C%E6%96%BC%E4%BD%A0%E7%9A%84%E4%BE%BF%E4%BE%BF%E7%9A%84%E9%87%8D%E8%A6%81%E7%9F%A5%E8%AD%98%E3%80%82%E5%8E%9F%E4%BE%86%E7%BD%B5%E4%BA%BA%E5%AE%B6%E3%80%8C%E4%BD%A0%E5%8E%BB%E5%90%83/" >
-											10個關於你的便便的重要知識</a>
-										</div>
-										<div>
-											<span>林佑頴</span>
-											<a href="" >
-											<img src="background-img/便便.jpg" />
-											</a>
-											<a href="http://www.teepr.com/256326/killianhuang/10%E5%80%8B%E9%97%9C%E6%96%BC%E4%BD%A0%E7%9A%84%E4%BE%BF%E4%BE%BF%E7%9A%84%E9%87%8D%E8%A6%81%E7%9F%A5%E8%AD%98%E3%80%82%E5%8E%9F%E4%BE%86%E7%BD%B5%E4%BA%BA%E5%AE%B6%E3%80%8C%E4%BD%A0%E5%8E%BB%E5%90%83/" >
-											10個關於你的便便的重要知識</a>
-										</div>
-										<div>
-											<span>林佑頴</span>
-											<a href="" >
-											<img src="background-img/便便.jpg" />
-											</a>
-											<a href="http://www.teepr.com/256326/killianhuang/10%E5%80%8B%E9%97%9C%E6%96%BC%E4%BD%A0%E7%9A%84%E4%BE%BF%E4%BE%BF%E7%9A%84%E9%87%8D%E8%A6%81%E7%9F%A5%E8%AD%98%E3%80%82%E5%8E%9F%E4%BE%86%E7%BD%B5%E4%BA%BA%E5%AE%B6%E3%80%8C%E4%BD%A0%E5%8E%BB%E5%90%83/" >
-											10個關於你的便便的重要知識</a>
-										</div>
-										<div>
-											<span>林佑頴</span>
-											<a href="" >
-											<img src="background-img/便便.jpg" />
-											</a>
-											<a href="http://www.teepr.com/256326/killianhuang/10%E5%80%8B%E9%97%9C%E6%96%BC%E4%BD%A0%E7%9A%84%E4%BE%BF%E4%BE%BF%E7%9A%84%E9%87%8D%E8%A6%81%E7%9F%A5%E8%AD%98%E3%80%82%E5%8E%9F%E4%BE%86%E7%BD%B5%E4%BA%BA%E5%AE%B6%E3%80%8C%E4%BD%A0%E5%8E%BB%E5%90%83/" >
-											10個關於你的便便的重要知識</a>
-										</div>
-										<div>
-											<span>林佑頴</span>
-											<a href="" >
-											<img src="background-img/便便.jpg" />
-											</a>
-											<a href="http://www.teepr.com/256326/killianhuang/10%E5%80%8B%E9%97%9C%E6%96%BC%E4%BD%A0%E7%9A%84%E4%BE%BF%E4%BE%BF%E7%9A%84%E9%87%8D%E8%A6%81%E7%9F%A5%E8%AD%98%E3%80%82%E5%8E%9F%E4%BE%86%E7%BD%B5%E4%BA%BA%E5%AE%B6%E3%80%8C%E4%BD%A0%E5%8E%BB%E5%90%83/" >
-											10個關於你的便便的重要知識</a>
-										</div>
-										<div>
-											<span>林佑頴</span>
-											<a href="" >
-											<img src="background-img/便便.jpg" />
-											</a>
-											<a href="http://www.teepr.com/256326/killianhuang/10%E5%80%8B%E9%97%9C%E6%96%BC%E4%BD%A0%E7%9A%84%E4%BE%BF%E4%BE%BF%E7%9A%84%E9%87%8D%E8%A6%81%E7%9F%A5%E8%AD%98%E3%80%82%E5%8E%9F%E4%BE%86%E7%BD%B5%E4%BA%BA%E5%AE%B6%E3%80%8C%E4%BD%A0%E5%8E%BB%E5%90%83/" >
-											10個關於你的便便的重要知識</a>
-										</div>
-										<div>
-											<span>林佑頴</span>
-											<a href="" >
-											<img src="background-img/便便.jpg" />
-											</a>
-											<a href="http://www.teepr.com/256326/killianhuang/10%E5%80%8B%E9%97%9C%E6%96%BC%E4%BD%A0%E7%9A%84%E4%BE%BF%E4%BE%BF%E7%9A%84%E9%87%8D%E8%A6%81%E7%9F%A5%E8%AD%98%E3%80%82%E5%8E%9F%E4%BE%86%E7%BD%B5%E4%BA%BA%E5%AE%B6%E3%80%8C%E4%BD%A0%E5%8E%BB%E5%90%83/" >
-											10個關於你的便便的重要知識</a>
-										</div>
-										<div>
-											<span>林佑頴</span>
-											<a href="" >
-											<img src="background-img/便便.jpg" />
-											</a>
-											<a href="http://www.teepr.com/256326/killianhuang/10%E5%80%8B%E9%97%9C%E6%96%BC%E4%BD%A0%E7%9A%84%E4%BE%BF%E4%BE%BF%E7%9A%84%E9%87%8D%E8%A6%81%E7%9F%A5%E8%AD%98%E3%80%82%E5%8E%9F%E4%BE%86%E7%BD%B5%E4%BA%BA%E5%AE%B6%E3%80%8C%E4%BD%A0%E5%8E%BB%E5%90%83/" >
-											10個關於你的便便的重要知識</a>
-										</div>
-										<div>
-											<span>林佑頴</span>
-											<a href="" >
-											<img src="background-img/便便.jpg" />
-											</a>
-											<a href="http://www.teepr.com/256326/killianhuang/10%E5%80%8B%E9%97%9C%E6%96%BC%E4%BD%A0%E7%9A%84%E4%BE%BF%E4%BE%BF%E7%9A%84%E9%87%8D%E8%A6%81%E7%9F%A5%E8%AD%98%E3%80%82%E5%8E%9F%E4%BE%86%E7%BD%B5%E4%BA%BA%E5%AE%B6%E3%80%8C%E4%BD%A0%E5%8E%BB%E5%90%83/" >
-											10個關於你的便便的重要知識</a>
-										</div>
+							    <div style="margin-left: 45%; margin-bottom: 50px; font-size: 30px;">徵團消息</div>
+									<div id="thirdCA-box2" class = "CA-box2" alt = "third slide" style="margin-left:5%;">
+										<?php MainCoserinfoinquire("徵團"); ?> 
 									</div>
 								</div>
 								<!--container-fluid.row-fluid.span8 firstCA-box2-->
@@ -496,8 +274,20 @@
 		</div>
 	</body>
 </html>
+
 <script>
- function logout(){
-   location.href = 'http://localhost/promdream/logout.php'
- }
+    function MainNews() {
+          var resbonse=$.ajax({
+            url:"MainCoserAjaxContent.php", //the page containing php script
+            type: "post", //request type,
+            dataType: "text",
+            async:false, 
+            data: {registration: "success",type: "news"},
+            success:function(result){
+                    document.getElementById("firstCA-box2").innerHTML=result;
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){  
+                  console.log(xhr.responseText);
+            }
+         });
 </script>

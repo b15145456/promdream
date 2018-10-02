@@ -7,6 +7,7 @@
    		$loginstate=$_SESSION['loginstate'];
    		$username=$_SESSION['username'];
     	$ID=$_SESSION['ID'];
+    	$contribution=$_SESSION['contribution'];
    }
 
 ?>

@@ -21,8 +21,7 @@
     	$sql = " SELECT 暱稱 FROM coserRegister WHERE 信箱 = '$account' ";
     	$result = mysqli_query($conn,$sql);
         $row = mysqli_fetch_array($result);
-    	$username=$row[0]; 
-    	$_SESSION['loginstate']=1;
+    	$username=$row[0];
     	$_SESSION['username']=$username;
 
     	$sql = " SELECT ID FROM coserRegister WHERE 信箱 = '$account' ";
@@ -31,6 +30,23 @@
         $id=$row[0]; 
         $_SESSION['ID']=$id;
 
+        $sql = " SELECT 貢獻度 FROM coserRegister WHERE 信箱 = '$account' ";
+        $result = mysqli_query($conn,$sql);
+        $row = mysqli_fetch_array($result);
+        $contribution=$row[0]; 
+        $_SESSION['contribution']=$contribution;
+
+        $sql = " SELECT 認證狀態 FROM coserRegister WHERE 信箱 = '$account' ";
+        $result = mysqli_query($conn,$sql);
+        $row = mysqli_fetch_array($result);
+        $VerifyState=$row[0];
+        if($VerifyState=="T"){
+            $_SESSION['loginstate']=1;
+        }
+        else{
+            echo "<script>alert('$username! 您的帳號尚未通過認證!滾吧(」・ω・)」うー！(／・ω・)／'); location.href = 'http://localhost/promdream/main-coser.php'</script>";
+        }
+        
     	echo "<script>alert('$username! 歡迎光臨夢之舞會(」・ω・)」うー！(／・ω・)／'); location.href = 'http://localhost/promdream/main-coser.php'</script>";
     }
     else{

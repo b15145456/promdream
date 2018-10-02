@@ -5,7 +5,7 @@
 		<meta name = "description" content = "">
 		<!--上述為網址外部描述-->
 		<title>外拍場景資訊</title>
-	  <?php include 'scenephp.php';?>
+	  <?php include 'sceneajaxcontent.php';?>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
 		<link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet"  type="text/css">
@@ -20,13 +20,14 @@
 		<script src="bootstrap/js/bootstrap.min.js"></script>
 		<script src="main-coser.js"></script>
 		
+    <script language=JavaScript src="scorefunction.js"></script>
 
 		<!--響應式套用 p.s 這裡有一個小問題，根據你的行位 若將18行的引進js移到16行，將無法造成輪播效果，請各位注意-->
 	</head>
   <script>
     function SortbyName() {
           var resbonse=$.ajax({
-            url:"scenephp.php", //the page containing php script
+            url:"sceneajaxcontent.php", //the page containing php script
             type: "post", //request type,
             dataType: "text",
             async:false, 
@@ -42,7 +43,7 @@
      }
      function SortbyCost() {
           var resbonse=$.ajax({
-            url:"scenephp.php", //the page containing php script
+            url:"sceneajaxcontent.php", //the page containing php script
             type: "post", //request type,
             dataType: "text",
             async:false, 
@@ -58,7 +59,7 @@
      }
      function SortbyEval() {
           var resbonse=$.ajax({
-            url:"scenephp.php", //the page containing php script
+            url:"sceneajaxcontent.php", //the page containing php script
             type: "post", //request type,
             dataType: "text",
             async:false, 
@@ -72,6 +73,24 @@
 
          });
      }
+     //關鍵字搜尋
+     function SortbyKey(Key) {
+          var resbonse=$.ajax({
+            url:"sceneajaxcontent.php", //the page containing php script
+            type: "post", //request type,
+            dataType: "text",
+            async:false, 
+            data: {registration: "success", type: "4",SearchKey:Key},
+            success:function(result){
+                    document.getElementById("sceneinformationbox").innerHTML=result;
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){  
+                  console.log(xhr.responseText);  
+            }
+
+         });
+     }
+     //關鍵字搜尋
      function sceneComment(ID) {
           var resbonse=$.ajax({
             url:"sceneDetail.php", //the page containing php script
@@ -93,7 +112,6 @@
 <body id=body>
    <div id=logoarea1>
    </div>
-   
   <div id=logoarea2>
   </div>
   <div id=otherfunctionbox>
@@ -115,9 +133,26 @@
         <div  class=headerbutton>
         	<div>外拍場景資訊</div>
         </div>
-        <div  class="headerbutton otherlogin" onclick="javascript:location.href='login.php'">
-          <div>登入</div>
+        <div><?php if($loginstate==1){echo "<div id='personinfos'><div>個人資訊</div></div>";} else{echo"<div id='personinfo' onclick=javascript:location.href='login.php'><div>登入</div></div>";}?></div>
+        <div id="personinfodetail">
+        <div id='presonframe'>
+        <div id="presondetail">
+          <div id="minipersonimg"></div>
+          <div id="personminiinfo">歡迎!&nbsp<?php echo $username; ?></div>
+          <ul><li>個人資料</li><li>文章管理</li><li>每日任務</li><li onclick='logout()'>登出</li></ul> 
         </div>
+      </div>
+      <script>
+      $(document).ready(function(){
+          $("#personinfos").click(function(){
+              $("#personinfodetail").toggle(function(){$("#presonframe").css("height","330px");});
+          });
+      });
+      function logout(){
+          location.href = 'http://localhost/promdream/logout.php'
+      }
+    </script>
+    </div>
   </div>		
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
@@ -177,19 +212,19 @@
     </div> 
   </div>
   <!--外拍場景功能欄 row1 end-->
-  <div class="row-fluid">
-      <div class="span6" style="margin-top: 80px;">
+  <div class="row-fluid" style="width:80vw;">
+      <div class="span3" style="margin-top: 60px;">
         <form action="" id = "scenesearchbox" onsubmit = "">
           <div>
             <p>關鍵字搜尋&nbsp&nbsp:&nbsp</p>
-            <input type = "text" name = "q" size = "20" />
+            <input id="keysearch" type = "text" name = "q" size = "20" />
             <div id="scenesearchsubmit">
-              <input type = "submit"  value = "Search" />
+              <button type="button" style="width:50px;height:25px;" onclick="SortbyKey(document.getElementById('keysearch').value)">搜尋</button>
             </div>  
           </div>
         </form>        
-      </div>
-      <div class=span3 style="margin-top: 80px;">
+      </div>  
+      <div class=span3 style="margin-top: 75px; margin-left: 5vw;">
         <div id="scenechoosebox">
           <h4>排序&nbsp&nbsp:&nbsp</h4>
           <div  class="scenechoose"  onclick="SortbyName()"> 
@@ -202,14 +237,16 @@
               依評價↓
           </div>  
         </div>
-      </div>  
+      </div> 
+      <div class="span3" style="position:absolute; margin-left:5vw;">
+        <div class="scenedetailreturn" onclick="javascript:location.href='scenearticle.php'">發表文章</div>
+        <div class="scenedetailreturn" onclick="javascript:location.href='sceneprovide.html'">提供資訊</div>
+      </div> 
   </div>
   <!--排序欄位 end--> 
   <div class="row-fluid">
     <div class="span1"></div>
     <div class="span7">
-      <div class="scenedetailreturn" onclick="javascript:location.href='scenearticle.php'">發表文章</div>
-      <div class="scenedetailreturn" onclick="javascript:location.href='sceneprovide.html'">提供資訊</div>
       <div id=sceneinformationbox style="overflow-y:scroll;">
          <?php sceneinfoinquire(1); ?>            
       </div>
