@@ -10,7 +10,7 @@ else{
 }
 
 if($loginstate==0){
-  $ID="guest";
+  $ID=0;
 }
 
 $name=$_POST["name"];
@@ -29,7 +29,7 @@ $row=$statement->fetchAll();
 $NewsID=$row[0]['MAX(NewsID)'];
 $id= $NewsID+1;//要存入的本篇的ID
 
-$statement = $connection->prepare("INSERT INTO mainnews (NewsID,name,hostname,hostProvide,ActiveLink,活動類型,活動地點,開始時間,結束時間,提供者ID,content, photo1, photo2, photo3, photo4, photo5) VALUES (?, ?, ? , ? , ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+$statement = $connection->prepare("INSERT INTO mainnews (NewsID,name,hostname,hostProvide,ActiveLink,活動類型,活動地點,開始時間,結束時間,提供者ID,content, photo1, photo2, photo3) VALUES (?, ?, ? , ? , ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 $statement->bindParam(1, $id);
 $statement->bindParam(2, $name);
 $statement->bindParam(3, $hostname);
@@ -44,7 +44,7 @@ $statement->bindParam(11, $content);
 
 if(isset($_FILES['files'])){
   $errors= array();
-  $imglimitnum=5;//最多上傳張
+  $imglimitnum=3;//最多上傳張
   $limit=0;//已經上傳的張數
 
   $filearray=$_POST["filearray"];
@@ -68,8 +68,8 @@ if(isset($_FILES['files'])){
             mkdir("$desired_dir", 0700);  // Create directory if it does not exist
         }
         if(is_dir("$desired_dir/".$file_name)==false){
-            move_uploaded_file($file_tmp,"mainnews_img/".$id."/".$ID."_".($upload_img_count-11).".jpg");
-            $file_position="mainnews_img/".$id."/".$ID."_".($upload_img_count-11).".jpg";
+            move_uploaded_file($file_tmp,"mainnews_img/".$id."/".$ID."_".($upload_img_count-9).".jpg");
+            $file_position="mainnews_img/".$id."/".$ID."_".($upload_img_count-9).".jpg";
             $statement->bindValue($upload_img_count,$file_position);
             $upload_img_count++;
         }else{         //rename the file if another one exist
@@ -82,7 +82,7 @@ if(isset($_FILES['files'])){
        print_r($errors);
     }
   }
-  while($upload_img_count<=16){
+  while($upload_img_count<=14){
     $statement->bindValue($upload_img_count,"");
     $upload_img_count++;
   }

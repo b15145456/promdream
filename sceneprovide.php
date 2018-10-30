@@ -29,14 +29,18 @@
     //先取出目前最大的ID
     //將ID++
     //設為新ID
+    $zero=0;
 
-    $statement = $connection->prepare("INSERT INTO photoscene (ID, name ,type,cost,網址,position) VALUES (?, ?, ?, ?, ?, ?)");
+    $statement = $connection->prepare("INSERT INTO photoscene (ID, name ,type,cost,網址,eval,position,留言數,評論數) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $statement->bindParam(1, $id);
     $statement->bindParam(2, $name);
     $statement->bindParam(3, $type);
     $statement->bindParam(4, $cost);
     $statement->bindParam(5, $link);
-    $statement->bindParam(6, $sceneaddress);
+    $statement->bindParam(6, $zero);
+    $statement->bindParam(7, $sceneaddress);
+    $statement->bindParam(8, $zero);
+    $statement->bindParam(9, $zero);
     $statement->execute();
 
     if($_FILES['file']['error']>0){

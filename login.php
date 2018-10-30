@@ -22,15 +22,12 @@
 		<link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet"  type="text/css">
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"  type="text/css">
 		<link href="bootstrap/css/bootstrap.css" rel="stylesheet"  type="text/css">
-		<link href="Gallery-2.25.1/css/blueimp-gallery.css" rel="stylesheet"  type="text/css">
 		
 		<script src="jquery-3.2.1.js"></script>
 		<script src="bootstrap/js/bootstrap.js"></script>
 		<script src="bootstrap/js/bootstrap.min.js"></script>
-		<script src="main-coser.js"></script>
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-		
-		<script src="Gallery-2.25.1/js/blueimp-gallery-video.js"></script>
+	
 
 		<!--響應式套用 p.s 這裡有一個小問題，根據你的行位 若將18行的引進js移到16行，將無法造成輪播效果，請各位注意-->
 	</head>
@@ -91,19 +88,19 @@
 .loginsubmit{
    position:relative;
    margin-top: 25%;
-   margin-left:64%;
+   margin-left:75%;
    display: inline-block;
 }
 
 .loginbox{
   background-color:#ffffff; 
   left:30vw;
-  margin-top:10%;
+  margin-top:180px;
   border-style:solid;
   border-color: #7FB2F0;
   border-width:3px;
-  height:40vh;
-  width: 30vw;
+  height:350px;
+  width: 560px;
   border-radius:10px;
   position:absolute;
 }
@@ -128,13 +125,13 @@
 
 .otheraccountlogin{
   background-color:#ffffff; 
-  left:30vw;
-  margin-top:68vh;
+  left:29vw;
+  margin-top:600px;
   border-style:solid;
   border-color: #ffffff;
   border-width:3px;
-  height:5vh;
-  width: 30vw;
+  height:50px;
+  width:600px;
   border-radius:10px;
   position: absolute;
 }
@@ -142,8 +139,8 @@
   background-image:url(background-img/facebook登錄.jpg);
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  width:40%;
-  height:100%;
+  width:200px;
+  height:50px;
   border-style:solid;
   border-color: #7FB2F0;
   border-radius:30px;
@@ -160,8 +157,8 @@
   background-image:url(background-img/google登錄.jpg);
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  width:40%;
-  height:100%;
+  width:200px;
+  height:50px;
   border-style:solid;
   border-color: #7FB2F0;
   border-radius:30px;
@@ -169,7 +166,7 @@
   cursor: pointer;
   opacity: 0.5;
   display: inline-block;
-  margin-left: 5%;
+  margin-left: 100px;
 }
 
 .googlelogin:hover{
@@ -186,6 +183,6 @@
   font-family: 微軟正黑體;
 }		
 
-</style>>
+</style>
 
 </html>

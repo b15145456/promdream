@@ -148,7 +148,7 @@
     	nextlaid="imgla"+temp;
 
     	$("#"+thislaid).css("display","none");
-    	if(file_num<5){
+    	if(file_num<3){
     		$("#upimgmain").append("<label class='upload_cover imgupdiv' id='"+nextlaid+"'><input id='imgid2'  accept='.jpg' class='article_input' type='file' name='files[]' multiple/><span class='upload_icon'>➕</span></label>");
     	}	
   
@@ -158,7 +158,7 @@
 		var fadiv=document.getElementById(this.id).parentNode;
 		removeArr(file_array,fadiv.id.slice(10));//"articleimg"+temp 10是取最後的數字
 		fadiv.parentNode.removeChild(fadiv);
-		if(file_num==5){
+		if(file_num==3){
     		$("#upimgmain").append("<label class='upload_cover imgupdiv' id='"+nextlaid+"'><input id='imgid2' accept='.jpg' class='article_input' type='file' name='files[]' multiple/><span class='upload_icon'>➕</span></label>");
     	}
 		file_num--;
@@ -167,15 +167,15 @@
   			if (input.files && input.files.length >= 0) {
   				id_count++;//用來計算laid用
   				file_count=input.files.length;//這個選擇器選擇的檔案數
-    			if(file_num+file_count>5){
+    			if(file_num+file_count>3){
     				alert("選擇的照片數量超過上限");
     			}
     			else{
     				for(var i=0 ; i<= input.files.length-1; i++){
     					sum_file_num++;
     					file_num++;
-    					if(file_num>5){
-    						file_num=5;
+    					if(file_num>3){
+    						file_num=3;
     						break;
     					}
     					var phototype = true;
@@ -283,12 +283,6 @@ display: none;
 	display: none;
 }
 #imgid3{
-	display: none;
-}
-#imgid4{
-	display: none;
-}
-#imgid5{
 	display: none;
 }
 

@@ -21,6 +21,21 @@ $row=$statement->fetchAll();
 $ArticleID=$row[0]['MAX(ID)'];
 $id= $ArticleID+1;
 
+$statement = $connection->query("SELECT `留言數` FROM `photoscene` WHERE `name`= '$scenetype'");
+$row=$statement->fetchAll();   
+$CommentNum=$row[0]['留言數'];
+$CommentNum+=1;
+echo $CommentNum;
+
+
+$data = [
+        'scenetype' => $scenetype,
+        'CommentNum' => $CommentNum,
+];
+$sql = "UPDATE `photoscene` SET `留言數` = :CommentNum WHERE `name` = :scenetype";
+$stmt= $connection->prepare($sql);
+$stmt->execute($data);
+
 $statement = $connection->prepare("INSERT INTO scenecomment (ID, 使用者ID ,暱稱 ,文章主題 ,棚名, 文章類型, 評論, photo1, photo2, photo3, photo4, photo5) VALUES (?, ?, ? , ? , ?, ?, ?, ?, ?, ?, ?, ?)");
 $statement->bindParam(1, $id);
 $statement->bindParam(2, $ID);
